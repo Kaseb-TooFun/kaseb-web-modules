@@ -20,7 +20,6 @@ build:
   stage: build
   script:
    - yarn install
-   - yarn test
    - CI=false yarn build
    - ls
    - ls -R build || true
