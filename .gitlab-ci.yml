@@ -1,4 +1,4 @@
-image: docker:latest
+image: mhart/alpine-node:11
 services:
   - docker:dind
 
@@ -16,16 +16,11 @@ stages:
   - deploy
 
 build:
-  image: mhart/alpine-node:11
   stage: build
   script:
    - yarn install
    - CI=false yarn build
-   - ls
-   - ls -R build || true
-   - ls dist || true
-   - rm -rf public
-   - mv build public
+   - mv dist public
   artifacts:
     paths:
       - public
