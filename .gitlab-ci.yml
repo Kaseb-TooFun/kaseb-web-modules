@@ -1,4 +1,3 @@
-image: mhart/alpine-node:11
 services:
   - docker:dind
 
@@ -17,9 +16,11 @@ stages:
 
 build:
   stage: build
+  image: mhart/alpine-node:11
   script:
    - yarn install
    - CI=false yarn build
+   - rm -rf public
    - mv dist public
   artifacts:
     paths:
@@ -31,13 +32,9 @@ build:
 
 deploy:
   stage: deploy
-  image: python:latest
+  image: amazon/aws-cli:latest
   script:
-  - pip install awscli
-  - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist --recursive
-  artifacts:
-    paths:
-      - public
+    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist --recursive
   rules:
     - if: $CI_COMMIT_TAG
     - if: '$CI_PIPELINE_SOURCE == "web"'
