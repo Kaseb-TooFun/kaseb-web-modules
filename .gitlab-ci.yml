@@ -34,7 +34,7 @@ deploy:
   image: python:latest
   script:
   - pip install awscli
-  - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist
+  - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist --recursive
   artifacts:
     paths:
       - public
