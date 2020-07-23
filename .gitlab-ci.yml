@@ -1,0 +1,45 @@
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+
+cache:
+  untracked: true
+  key: "$CI_PROJECT_ID"
+  paths:
+   - node_modules/
+    
+stages:
+  - build
+  - deploy
+
+build:
+  stage: build
+  image: mhart/alpine-node:11
+  script:
+   - yarn install
+   - CI=false yarn build
+   - rm -rf public
+   - mv dist public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_PIPELINE_SOURCE == "chat"'
+
+deploy:
+  stage: deploy
+  image: python:latest
+  script:
+    - pip install awscli
+    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist --recursive --acl public-read
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_PIPELINE_SOURCE == "chat"'
+  tags:
+    - arvan
+
