@@ -1,5 +1,6 @@
 import { addToBody, addCss } from "./utils";
 import _ from "lodash";
+
 console.log(
 	"%cKaseb%cIO",
 	"color:#ffbf00;font-size:4rem;font-weight:bold;text-shadow: 2px 2px #000",
@@ -7,27 +8,37 @@ console.log(
 );
 
 const templates = {
-	banner: '<div class="banner"><div class="description"><%= description %></div><a href="#" class="btn"><%= btnText %></a></div>';
-}
+	topBanner:
+		'<div class="kio banner top-banner animate__animated animate__bounceInDown"><div class="description"><%= description %></div><a href="#" class="btn"><%= btnText %></a></div>',
+	bottomBanner:
+		'<div class="kio banner bottom-banner animate__animated animate__bounceInUp"><div class="description"><%= description %></div><a href="#" class="btn"><%= btnText %></a></div>',
+};
 
 const siteConfig = window.kasebIO || {};
 
-if (siteConfig.css) {
-	addCss(siteConfig.css);
-}
-
-if (siteConfig.elements) {
-	siteConfig.elements.forEach(element => {
-		const { data, template } = element;
-		const { condition } = data;
-		console.log({ condition, template });
-		if (template == 'banner') {
-			const compiled = (_.template(templates.banner))(element.data);
+if (siteConfig.reactions) {
+	siteConfig.reactions.forEach((reaction) => {
+		const { data, type } = reaction;
+		console.log({ reaction });
+		if (type == "banner") {
+			let template = "";
+			if (data.template == "top-banner") {
+				template = templates.topBanner;
+			} else if (data.template == "bottom-banner") {
+				template = templates.bottomBanner;
+			}
+			const compiled = _.template(template)(reaction.data);
+			const { condition } = data;
 			switch (condition) {
 				case "wait-5":
 					setTimeout(() => {
 						addToBody(compiled);
 					}, 5000);
+					break;
+				case "wait-10":
+					setTimeout(() => {
+						addToBody(compiled);
+					}, 10000);
 					break;
 				case "wait-30":
 					setTimeout(() => {
@@ -43,8 +54,24 @@ if (siteConfig.elements) {
 				default:
 					break;
 			}
+		} else if (type == "action") {
+			switch (data.type) {
+				case "hover":
+					const item = document.querySelector(data.selector);
+					if(item) {
+						item.classList.add("animate__animated");
+						item.addEventListener('mouseenter', () => {
+							item.classList.add(data.effect);
+						});
+						item.addEventListener('mouseleave', () => {
+							item.classList.remove(data.effect);
+						});
+					}
+					break;
 
+				default:
+					break;
+			}
 		}
-
 	});
 }

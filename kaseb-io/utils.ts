@@ -1,12 +1,18 @@
 export const appendToHead = (el) => {
 	const head = document.head || document.getElementsByTagName("HEAD")[0];
 	head.appendChild(el);
-}
+};
+
+const createElementFromHTML = (htmlString) => {
+	var div = document.createElement("div");
+	div.innerHTML = htmlString.trim();
+	return div.firstChild;
+};
 
 export const addToBody = (str: string) => {
 	const body = document.body || document.getElementsByTagName("BODY")[0];
-	body.innerHTML += str;
-}
+	body.appendChild(createElementFromHTML(str));
+};
 
 export const addCss = (str: string) => {
 	const el: HTMLStyleElement = document.createElement("STYLE");

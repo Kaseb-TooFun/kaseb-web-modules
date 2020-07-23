@@ -1,0 +1,27 @@
+.kio.banner {
+	background-color: #ffbf00;
+	position: fixed;
+	left: 0;
+	right: 0;
+	text-align: center;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+}
+
+.kio.top-banner {
+	top: 0;
+}
+
+.kio.bottom-banner {
+	bottom: 0;
+}
+
+.kio .btn {
+	display: inline-block;
+	margin-top: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	color: #fff;
+	background-color: #0080ff;
+	text-decoration: none;
+}
