@@ -87,7 +87,7 @@ if (config.reactions) {
 		)
 		.then((response) => {
 			if (response.status == 200) {
-				applayReactions(response.data.config);
+				applayReactions(JSON.parse(response.data.conifg));
 			}
 		})
 		.catch((err) => console.log(err));
