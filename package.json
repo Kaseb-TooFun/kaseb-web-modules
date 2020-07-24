@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel serve index.html",
     "prod": "parcel build index.html",
-    "build": "parcel build kaseb-io/modules.ts --no-source-maps"
+    "build": "parcel build kaseb-io/modules.ts kaseb-io/styles/main.scss --no-source-maps"
   },
   "devDependencies": {
     "@babel/core": "^7.10.4",

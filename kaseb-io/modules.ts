@@ -1,4 +1,4 @@
-import { addToBody, addCss } from "./utils";
+import { addToBody, addCssLink } from "./utils";
 import axios from "axios";
 import _ from "lodash";
 
@@ -16,6 +16,8 @@ const templates = {
 };
 
 const config = window.kasebIO || {};
+
+addCssLink('https://kaseb-module.s3.ir-thr-at1.arvanstorage.com/dist/styles/main.css');
 
 const applayReactions = (reactions) => {
 	reactions.forEach((reaction) => {
