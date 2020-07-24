@@ -19,8 +19,11 @@ const config = window.kasebIO || {};
 
 const applayReactions = (reactions) => {
 	reactions.forEach((reaction) => {
-		const { data, type } = reaction;
-		console.log({ reaction });
+		const value =
+			typeof reaction.value == "string"
+				? JSON.parse(reaction.value)
+				: reaction.value;
+		const { data, type } = value;
 		if (type == "banner") {
 			let template = "";
 			if (data.template == "top-banner") {
@@ -28,7 +31,7 @@ const applayReactions = (reactions) => {
 			} else if (data.template == "bottom-banner") {
 				template = templates.bottomBanner;
 			}
-			const compiled = _.template(template)(reaction.data);
+			const compiled = _.template(template)(data);
 			const { condition } = data;
 			switch (condition) {
 				case "wait-5":
@@ -87,7 +90,7 @@ if (config.reactions) {
 		)
 		.then((response) => {
 			if (response.status == 200) {
-				applayReactions(JSON.parse(response.data.conifg));
+				applayReactions(response.data.configs);
 			}
 		})
 		.catch((err) => console.log(err));

@@ -1,6 +1,6 @@
 window.kasebIO = {
 	id: "1d5cbee2-c068-44c7-829e-545dab0f075c",
-	url: 'www.hexboy.ir'
+	url: "www.hexboy.ir",
 };
 
 // (() => {
