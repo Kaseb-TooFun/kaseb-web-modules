@@ -1,37 +1,6 @@
-window.kasebIO = window.kasebIO || {
-	key: "asdasd234234",
-	reactions: [
-		{
-			type: "banner",
-			data: {
-				template: "top-banner",
-				description: "welcome to my site",
-				btnText: "Click On Me",
-				condition: "wait-5",
-				isCloseable: true,
-				url: "/about",
-			},
-		},
-		{
-			type: "banner",
-			data: {
-				template: "bottom-banner",
-				description: "welcome to my site",
-				btnText: "Click On Me",
-				condition: "wait-10",
-				isCloseable: true,
-				url: "/about",
-			},
-		},
-		{
-			type: "action",
-			data: {
-				selector: "#header > ul > li:nth-child(3) > a",
-				type: "hover",
-				effect: "animate__jello",
-			},
-		},
-	],
+window.kasebIO = {
+	id: "1d5cbee2-c068-44c7-829e-545dab0f075c",
+	url: 'www.hexboy.ir'
 };
 
 // (() => {
@@ -43,4 +12,5 @@ window.kasebIO = window.kasebIO || {
 // 		head.appendChild(script);
 // 	};
 // 	bootstrap('./kaseb-io/modules-v1.js');
+// 	bootstrap('https://kaseb-module.s3.ir-thr-at1.arvanstorage.com/dist/modules.js');
 // })();

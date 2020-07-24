@@ -1,4 +1,5 @@
 import { addToBody, addCss } from "./utils";
+import axios from "axios";
 import _ from "lodash";
 
 console.log(
@@ -14,10 +15,10 @@ const templates = {
 		'<div class="kio banner bottom-banner animate__animated animate__bounceInUp"><div class="description"><%= description %></div><a href="#" class="btn"><%= btnText %></a></div>',
 };
 
-const siteConfig = window.kasebIO || {};
+const config = window.kasebIO || {};
 
-if (siteConfig.reactions) {
-	siteConfig.reactions.forEach((reaction) => {
+const applayReactions = (reactions) => {
+	reactions.forEach((reaction) => {
 		const { data, type } = reaction;
 		console.log({ reaction });
 		if (type == "banner") {
@@ -58,12 +59,12 @@ if (siteConfig.reactions) {
 			switch (data.type) {
 				case "hover":
 					const item = document.querySelector(data.selector);
-					if(item) {
+					if (item) {
 						item.classList.add("animate__animated");
-						item.addEventListener('mouseenter', () => {
+						item.addEventListener("mouseenter", () => {
 							item.classList.add(data.effect);
 						});
-						item.addEventListener('mouseleave', () => {
+						item.addEventListener("mouseleave", () => {
 							item.classList.remove(data.effect);
 						});
 					}
@@ -74,4 +75,20 @@ if (siteConfig.reactions) {
 			}
 		}
 	});
+};
+
+if (config.reactions) {
+	applayReactions(config.reactions);
+} else if (config.url) {
+	const random = Math.floor(Math.random() * 10000000);
+	axios
+		.get(
+			`https://dev-api.mykaseb.ir/api/v1/website/configs?websiteUrl=${config.url}&random=${random}`
+		)
+		.then((response) => {
+			if (response.status == 200) {
+				applayReactions(response.data.config);
+			}
+		})
+		.catch((err) => console.log(err));
 }
