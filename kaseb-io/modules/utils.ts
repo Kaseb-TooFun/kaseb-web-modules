@@ -14,6 +14,11 @@ export const addToBody = (str: string) => {
 	body.appendChild(createElementFromHTML(str));
 };
 
+export const addToKIO = (str: string) => {
+	const body = document.getElementById('kio-app');
+	body.appendChild(createElementFromHTML(str));
+};
+
 export const addCss = (str: string) => {
 	const el: HTMLStyleElement = document.createElement("STYLE");
 	el.innerHTML = str;

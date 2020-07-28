@@ -6,22 +6,38 @@
 	text-align: center;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
-}
 
-.kio.top-banner {
-	top: 0;
-}
+	&.kio.top-banner {
+		top: 0;
+	}
 
-.kio.bottom-banner {
-	bottom: 0;
-}
+	&.bottom-banner {
+		bottom: 0;
+	}
 
-.kio .btn {
-	display: inline-block;
-	margin-top: 10px;
-	padding: 10px;
-	border-radius: 5px;
-	color: #fff;
-	background-color: #0080ff;
-	text-decoration: none;
+	.btn {
+		display: inline-block;
+		margin-top: 10px;
+		padding: 10px;
+		border-radius: 5px;
+		color: #fff;
+		background-color: #0080ff;
+		text-decoration: none;
+	}
+
+	.close-btn {
+		position: fixed;
+		right: 20px;
+		top: 20px;
+		background-color: #333;
+		cursor: pointer;
+		color: #fff;
+		border-radius: 5px;
+		padding: 5px 10px;
+	}
+
+	.close-btn:hover {
+		background-color: #fff;
+		color: #333;
+	}
 }

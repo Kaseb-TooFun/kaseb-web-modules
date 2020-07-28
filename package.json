@@ -9,13 +9,21 @@
     "build": "parcel build kaseb-io/modules.ts kaseb-io/styles/main.scss --no-source-maps"
   },
   "devDependencies": {
-    "@babel/core": "^7.10.4",
+    "@babel/core": "^7.0.0-0",
+    "@babel/plugin-transform-react-jsx": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-typescript": "^7.10.4",
     "parcel-bundler": "^1.12.4",
     "sass": "^1.26.10",
     "typescript": "^3.9.6"
   },
   "dependencies": {
     "axios": "^0.19.2",
-    "lodash": "^4.17.19"
+    "lodash": "^4.17.19",
+    "preact": "^10.4.6"
+  },
+  "alias": {
+    "react": "preact/compat",
+    "react-dom": "preact/compat"
   }
 }
