@@ -1,7 +1,7 @@
 import axios from "axios";
-import { addToBody, addCssLink } from "./utils";
-import dispatchBanner from "./actions/banner";
-import dispatchReaction from "./actions/reaction";
+import { addToBody, addCssLink } from "./modules/utils";
+import dispatchBanner from "./modules/actions/banner";
+import dispatchReaction from "./modules/actions/reaction";
 
 console.log(
 	"%cKaseb%cIO",
