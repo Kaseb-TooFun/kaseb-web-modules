@@ -16,6 +16,7 @@ const run = (data) => {
 		<Banner
 			description={data.description}
 			btnText={data.btnText}
+			url={data.url}
 			condition={data.condition}
 			isCloseable={data.isCloseable == true}
 			position={position}

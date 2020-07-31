@@ -4,6 +4,7 @@ import { Component } from 'preact';
 interface IProps {
 	description: string;
 	btnText: string;
+	url: string;
 	condition: string;
 	isCloseable: boolean;
 	position: 'top' | 'bottom';
@@ -47,13 +48,13 @@ export default class Banner extends Component<IProps, IState> {
 
 	render() {
 		const { show } = this.state;
-		const { description, btnText, isCloseable, position } = this.props;
+		const { description, btnText, url, isCloseable, position } = this.props;
 		const classStr = `kio banner ${position}-banner animate__animated animate__bounceInDown`;
 		return (
 			show && (
 				<div class={classStr}>
 					<div class="description">{description}</div>
-					<a href="#" class="btn">
+					<a href={url} class="btn">
 						{btnText}
 					</a>
 					{isCloseable && (
