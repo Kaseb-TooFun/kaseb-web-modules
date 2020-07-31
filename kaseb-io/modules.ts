@@ -41,8 +41,10 @@ window.addEventListener('message', (message) => {
 	}
 });
 
+const random = Math.floor(Math.random() * 10000000);
+
 addCssLink(
-	'https://kaseb-module.s3.ir-thr-at1.arvanstorage.com/dist/styles/main.css'
+	`https://kaseb-module.s3.ir-thr-at1.arvanstorage.com/dist/styles/main.css?random=${random}`
 );
 
 const applayReactions = (reactions) => {
@@ -67,7 +69,6 @@ const applayReactions = (reactions) => {
 if (config.reactions) {
 	applayReactions(config.reactions);
 } else if (config.id) {
-	const random = Math.floor(Math.random() * 10000000);
 	axios
 		.get(
 			`https://dev-api.mykaseb.ir/api/v1/websites/${config.id}/configs?random=${random}`
