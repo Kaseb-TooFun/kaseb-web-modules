@@ -19,7 +19,9 @@ if (!window.kasebIO) {
 postMessage('kio-loaded');
 
 window.addEventListener('message', (message) => {
-	console.log({ messageFromParent: message });
+	if (process.env.NODE_ENV === 'development') {
+		console.log({ messageFromParent: message });
+	}
 	const { type, payload } = message.data;
 	switch (type) {
 		case 'set-target-origin':
@@ -70,9 +72,7 @@ if (config.reactions) {
 	applayReactions(config.reactions);
 } else if (config.id) {
 	axios
-		.get(
-			`https://dev-api.mykaseb.ir/api/v1/websites/${config.id}/configs?random=${random}`
-		)
+		.get(`https://dev-api.mykaseb.ir/api/v1/websites/${config.id}/configs`)
 		.then((response) => {
 			if (response.status == 200) {
 				applayReactions(response.data.configs);
