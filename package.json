@@ -18,6 +18,7 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
+    "@medv/finder": "^2.0.0",
     "axios": "^0.19.2",
     "lodash": "^4.17.19",
     "preact": "^10.4.6"

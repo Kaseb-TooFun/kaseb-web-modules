@@ -1,12 +1,12 @@
-import React from "react";
-import { Component } from "preact";
+import React from 'react';
+import { Component } from 'preact';
 
 interface IProps {
 	description: string;
 	btnText: string;
 	condition: string;
 	isCloseable: boolean;
-	position: "top" | "bottom";
+	position: 'top' | 'bottom';
 }
 
 interface IState {
@@ -19,22 +19,22 @@ export default class Banner extends Component<IProps, IState> {
 	componentDidMount() {
 		const { condition } = this.props;
 		switch (condition) {
-			case "wait-5":
+			case 'wait-5':
 				setTimeout(() => {
 					this.setState({ show: true });
 				}, 5000);
 				break;
-			case "wait-10":
+			case 'wait-10':
 				setTimeout(() => {
 					this.setState({ show: true });
 				}, 10000);
 				break;
-			case "wait-30":
+			case 'wait-30':
 				setTimeout(() => {
 					this.setState({ show: true });
 				}, 30000);
 				break;
-			case "wait-60":
+			case 'wait-60':
 				setTimeout(() => {
 					this.setState({ show: true });
 				}, 60000);
