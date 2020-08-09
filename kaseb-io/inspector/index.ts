@@ -1,5 +1,5 @@
 import { finder } from '@medv/finder';
-import { postMessage } from '../modules/utils';
+import { postMessage } from '../modules/messages';
 
 const clearClass = () => {
 	const items = document.getElementsByClassName('kio-inspector-item');
@@ -16,7 +16,7 @@ const onClick = (e: MouseEvent) => {
 	postMessage(
 		'select-item',
 		finder(el, {
-			className: (name) => name != 'kio-inspector-item',
+			className: (name) => name.indexOf('kio-') == -1
 		})
 	);
 };
