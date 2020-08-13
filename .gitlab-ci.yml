@@ -19,7 +19,8 @@ build-dev:
   image: mhart/alpine-node:11
   script:
    - yarn install
-   - CI=false ‌BASE_URL="dev-api.mykaseb.ir" yarn build
+   - export BASE_URL=dev-api.mykaseb.ir
+   - CI=false yarn build
    - rm -rf public
    - mv dist dev
   artifacts:
@@ -35,7 +36,8 @@ build-prod:
   image: mhart/alpine-node:11
   script:
    - yarn install
-   - CI=false ‌BASE_URL="api.kaseb.xyz" yarn build
+   - export BASE_URL=api.kaseb.xyz
+   - CI=false ‌yarn build
    - rm -rf public
    - mv dist prod
   artifacts:
