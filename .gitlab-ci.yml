@@ -37,6 +37,7 @@ build-prod:
   script:
    - yarn install
    - export BASE_URL=api.kaseb.xyz
+   - echo $BASE_URL
    - CI=false yarn build
    - rm -rf prod
    - mv dist prod
