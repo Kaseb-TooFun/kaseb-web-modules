@@ -9,7 +9,7 @@ cache:
   key: "$CI_PROJECT_ID"
   paths:
    - node_modules/
-    
+
 stages:
   - build
   - deploy
@@ -36,7 +36,7 @@ build-prod:
   image: mhart/alpine-node:11
   script:
    - yarn install
-   - export BASE_URL=api.kaseb.xyz
+   - export BASE_URL=https://api.kaseb.xyz
    - echo $BASE_URL
    - CI=false yarn build
    - rm -rf prod
