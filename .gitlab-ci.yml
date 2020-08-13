@@ -37,7 +37,7 @@ build-prod:
   script:
    - yarn install
    - export BASE_URL=api.kaseb.xyz
-   - CI=false ‌yarn build
+   - CI=false yarn build
    - rm -rf public
    - mv dist prod
   artifacts:
@@ -53,7 +53,7 @@ deploy-dev:
   image: python:latest
   script:
     - pip install awscli
-    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist-dev --recursive --acl public-read
+    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp dev s3://kaseb-module/dist-dev --recursive --acl public-read
   rules:
     - if: $CI_COMMIT_TAG
     - if: '$CI_PIPELINE_SOURCE == "web"'
@@ -66,7 +66,7 @@ deploy-prod:
   image: python:latest
   script:
     - pip install awscli
-    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist-prod --recursive --acl public-read
+    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp prod s3://kaseb-module/dist-prod --recursive --acl public-read
   rules:
     - if: $CI_COMMIT_TAG
     - if: '$CI_PIPELINE_SOURCE == "web"'
