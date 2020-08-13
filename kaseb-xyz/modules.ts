@@ -7,9 +7,10 @@ if (meta) {
 	config.id = meta.getAttribute('content');
 
 	console.log(
-		'%cKaseb%cIO',
-		'color:#ffbf00;font-size:4rem;font-weight:bold;text-shadow: 2px 2px #000',
-		'color:#ff0080;font-size:4rem;font-weight:bold;text-shadow: 2px 2px #000'
+		'%cKaseb%c.%cxyz',
+		'color:#ffbf00;font-size:3rem;font-weight:bold;text-shadow: 2px 2px #000',
+		'color:#000;font-size:2rem;font-weight:bold;',
+		'color:#ff0080;font-size:2rem;font-weight:bold;text-shadow: 1px 1px #000'
 	);
 
 	initReactions();

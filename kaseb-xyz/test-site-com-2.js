@@ -52,5 +52,5 @@ window.kasebIO = window.kasebIO || {
 // 		script.src = t;
 // 		head.appendChild(script);
 // 	};
-// 	bootstrap('./kaseb-io/modules-v1.js');
+// 	bootstrap('./kaseb-xyz/modules-v1.js');
 // })();

@@ -18,3 +18,6 @@ fs.renameSync(
 	path.join(__dirname, 'dist/styles/main.css'),
 	path.join(__dirname, `dist/${version}/style.css`)
 );
+
+// remove style dir
+fs.rmdirSync(path.join(__dirname, 'dist/styles'));
