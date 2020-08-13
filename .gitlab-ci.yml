@@ -21,7 +21,7 @@ build-dev:
    - yarn install
    - export BASE_URL=dev-api.mykaseb.ir
    - CI=false yarn build
-   - rm -rf public
+   - rm -rf dev
    - mv dist dev
   artifacts:
     paths:
@@ -38,7 +38,7 @@ build-prod:
    - yarn install
    - export BASE_URL=api.kaseb.xyz
    - CI=false yarn build
-   - rm -rf public
+   - rm -rf prod
    - mv dist prod
   artifacts:
     paths:
