@@ -14,28 +14,57 @@ stages:
   - build
   - deploy
 
-build:
+build-dev:
   stage: build
   image: mhart/alpine-node:11
   script:
    - yarn install
-   - CI=false yarn build
+   - CI=false ‌BASE_URL=api.mykaseb.ir yarn build
    - rm -rf public
-   - mv dist public
+   - mv dist dev
   artifacts:
     paths:
-      - public
+      - dev
   rules:
     - if: $CI_COMMIT_TAG
     - if: '$CI_PIPELINE_SOURCE == "web"'
     - if: '$CI_PIPELINE_SOURCE == "chat"'
 
-deploy:
+build-prod:
+  stage: build
+  image: mhart/alpine-node:11
+  script:
+   - yarn install
+   - CI=false ‌BASE_URL=api.kaseb.xyz yarn build
+   - rm -rf public
+   - mv dist prod
+  artifacts:
+    paths:
+      - prod
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_PIPELINE_SOURCE == "chat"'
+
+deploy-dev:
   stage: deploy
   image: python:latest
   script:
     - pip install awscli
-    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist --recursive --acl public-read
+    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist-dev --recursive --acl public-read
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - if: '$CI_PIPELINE_SOURCE == "chat"'
+  tags:
+    - arvan
+
+deploy-prod:
+  stage: deploy
+  image: python:latest
+  script:
+    - pip install awscli
+    - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp public s3://kaseb-module/dist-prod --recursive --acl public-read
   rules:
     - if: $CI_COMMIT_TAG
     - if: '$CI_PIPELINE_SOURCE == "web"'
