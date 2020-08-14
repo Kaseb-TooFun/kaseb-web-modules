@@ -61,6 +61,8 @@ export default class Banner extends Component<IProps, IState> {
 			btnText,
 			btnColor,
 			bgColor,
+			opacity=1,
+			fontFamily="Arial",
 			url,
 			isCloseable
 		} = data;
@@ -69,14 +71,16 @@ export default class Banner extends Component<IProps, IState> {
 		}`;
 		return (
 			isVisible && (
-				<div class={classStr} style={{ backgroundColor: bgColor }}>
-					<div class="description">{description}</div>
+				<div class={classStr} style={{ backgroundColor: bgColor, opacity: opacity }}>
+					<div class="description" style={{fontFamily: fontFamily}}>{description}</div>
 					<a
 						href={url}
 						class="kio-btn"
 						style={{ backgroundColor: btnColor }}
 					>
-						{btnText}
+						<span style={{fontFamily: fontFamily}}>
+							{btnText}
+						</span>
 					</a>
 					{isCloseable && (
 						<span
