@@ -1,12 +1,12 @@
 {
   "name": "my-modules",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "parcel serve index.html",
     "prod": "parcel build index.html",
-    "build": "parcel build kaseb-io/modules.ts kaseb-io/styles/main.scss --no-source-maps"
+    "build": "parcel build kaseb-xyz/modules.ts kaseb-xyz/styles/main.scss --no-source-maps && node build"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",

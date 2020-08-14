@@ -49,10 +49,9 @@ export const initReactions = () => {
 	];
 	// return applayReactions(data);
 	if (config.id) {
+		const baseUrl = process.env.BASE_URL || 'https://api.mykaseb.xyz';
 		axios
-			.get(
-				`https://dev-api.mykaseb.ir/api/v1/websites/${config.id}/configs`
-			)
+			.get(`${baseUrl}/api/v1/websites/${config.id}/configs`)
 			.then((response) => {
 				if (response.status == 200) {
 					applayReactions(response.data.configs);
