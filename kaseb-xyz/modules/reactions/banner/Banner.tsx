@@ -92,6 +92,8 @@ export default class Banner extends Component<IProps, IState> {
 			btnColor,
 			btnTextColor,
 			bgColor,
+			opacity = 1,
+			fontFamily = 'Arial',
 			url,
 			isCloseable
 		} = data;
