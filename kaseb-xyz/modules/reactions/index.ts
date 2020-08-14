@@ -27,24 +27,29 @@ export const previewReaction = (item: any) => {
 export const initReactions = () => {
 	const data = [
 		{
+			id: '9e1b8d0d-75ff-4995-ad2a-31bdac176923',
+			value:
+				'{"type":"action","data":{"selector":".fa-instagram","once": true,"destSelector":".avatar","type":"click","effect":"kio-a-bounce"}}'
+		},
+		{
 			id: '9e1b8d0d-75ff-4995-ad2a-31bdac176924',
 			value:
-				'{"type":"action","data":{"selector":"h1","type":"hover","effect":"kio-a-wobble"}}'
+				'{"type":"action","data":{"selector":".fa-envelope-o","destSelector":".avatar","type":"hover","effect":"kio-a-wobble"}}'
 		},
 		{
 			id: '9e1b8d0d-75ff-4995-ad2a-31bdac176925',
 			value:
-				'{"type":"banner","data":{"selector":"h1","type":"hover","effect":"kio-a-wobble"}}'
-		},
-		{
-			id: 'ed792a13-fd66-43b1-9359-0ec37d498821',
-			value:
-				'{"type":"banner","data":{"name":"top banner","template":"top-banner","description":"hello man","url":"https://hexboy.ir/","btnText":"press me!","condition":"wait-5","isCloseable":true}}'
+				'{"type":"action","data":{"selector":".fa-facebook","type":"hover","effect":"kio-a-wobble"}}'
 		},
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498823',
 			value:
-				'{"type":"banner","data":{"name":"top banner","template":"bottom-banner","description":"hello man","url":"https://hexboy.ir/","btnText":"press me!","condition":"wait-10","isCloseable":true}}'
+				'{"type":"banner","data":{"name":"hover banner","template":"bottom-banner","isRTL":true,"description":"hello man","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
+		},
+		{
+			id: 'ed792a13-fd66-43b1-9359-0ec37d498854',
+			value:
+				'{"type":"banner","data":{"name":"hover banner","template":"top-banner","description":"hello man","bgColor":"#2e4057","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"on-click","sourceSelector": ".fa-facebook","isCloseable":true}}'
 		}
 	];
 	// return applayReactions(data);

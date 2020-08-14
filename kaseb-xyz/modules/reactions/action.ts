@@ -1,22 +1,54 @@
 import _ from 'lodash';
 
-const run = (id: string, data) => {
-	switch (data.type) {
+const run = (id: string, data: any) => {
+	const { type } = data;
+	switch (type) {
 		case 'hover':
-			const item = document.querySelector(data.selector || 'x');
-			if (item) {
-				item.classList.add('kio-a-animated');
-				item.addEventListener('mouseenter', () => {
-					item.classList.add(data.effect);
-				});
-				item.addEventListener('mouseleave', () => {
-					item.classList.remove(data.effect);
-				});
-			}
-			break;
+			return onHover(data);
+		case 'click':
+			return onClick(data);
 
 		default:
 			break;
+	}
+};
+
+const onHover = (data: any) => {
+	const { selector, destSelector, once, effect } = data;
+	const item = document.querySelector(selector || 'x');
+	const destItem = document.querySelector(destSelector || selector || 'x');
+	if (item && destItem) {
+		destItem.classList.add('kio-a-animated');
+		item.addEventListener(
+			'mouseenter',
+			() => destItem.classList.add(effect),
+			{ once: once === true }
+		);
+		item.addEventListener(
+			'mouseleave',
+			() => destItem.classList.remove(effect),
+			{ once: once === true }
+		);
+	}
+};
+
+const onClick = (data: any) => {
+	const { selector, destSelector, once, effect } = data;
+	const item = document.querySelector(selector || 'x');
+	const destItem = document.querySelector(destSelector || selector || 'x');
+	if (item && destItem) {
+		destItem.classList.add('kio-a-animated');
+		item.addEventListener(
+			'click',
+			() => {
+				destItem.classList.add(effect);
+				setTimeout(() => destItem.classList.remove(effect), 2000);
+			},
+			{
+				once: once === true,
+				passive: true
+			}
+		);
 	}
 };
 
