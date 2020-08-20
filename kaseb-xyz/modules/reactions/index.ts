@@ -63,7 +63,7 @@ export const initReactions = () => {
 				'{"type":"banner","data":{"name":"my idle modal","template":"modal","title":"test title","description":"idle modal","bgColor":"#2e4057","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"idle-5","sourceSelector":".fa-twitter","isCloseable":true}}'
 		}
 	];
-	return applayReactions(data);
+	// return applayReactions(data);
 	if (config.id) {
 		const baseUrl = process.env.BASE_URL || 'https://api.mykaseb.xyz';
 		axios
