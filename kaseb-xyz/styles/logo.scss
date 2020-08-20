@@ -33,8 +33,8 @@
 
 .kio-banner {
 	.kio-logo {
-		left: unset;
-		right: 0;
+		right: unset;
+		left: 0;
 		border-radius: 0 10px 0 0;
 	}
 	&.is-rtl .kio-logo {
