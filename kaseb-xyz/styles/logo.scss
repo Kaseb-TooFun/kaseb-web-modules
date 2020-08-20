@@ -9,7 +9,7 @@
 	transition: all 0.2s ease;
 	text-decoration: none;
 	border: none;
-	width: 50px;
+	width: 40px;
 	min-height: 20px;
 	overflow: hidden;
 	path {
@@ -17,7 +17,7 @@
 	}
 	&:hover {
 		padding: 5px 10px;
-		width: 90px;
+		width: 80px;
 		background-color: #fcdf4c;
 		path {
 			fill: #1d1d1c;
@@ -35,11 +35,11 @@
 	.kio-logo {
 		left: unset;
 		right: 0;
-		border-radius: 10px 0 0 0;
+		border-radius: 0 10px 0 0;
 	}
 	&.is-rtl .kio-logo {
 		left: unset;
 		right: 0;
-		border-radius: 0 10px 0 0;
+		border-radius: 10px 0 0 0;
 	}
 }
