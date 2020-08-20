@@ -1,6 +1,6 @@
 import { config } from './modules/utils';
-import { initReactions } from './modules/reactions'
-import { initMessages } from './modules/messages'
+import { initReactions } from './modules/reactions';
+import { initMessages } from './modules/messages';
 
 const meta = document.querySelector('meta[name="kio-verification"]');
 if (meta) {

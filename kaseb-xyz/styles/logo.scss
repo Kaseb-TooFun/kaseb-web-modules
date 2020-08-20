@@ -1,0 +1,45 @@
+.kio-logo {
+	display: block;
+	background-color: rgba(0, 0, 0, 0.3);
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	padding: 5px;
+	border-radius: 0 10px 0 10px;
+	transition: all 0.2s ease;
+	text-decoration: none;
+	border: none;
+	width: 50px;
+	min-height: 20px;
+	overflow: hidden;
+	path {
+		fill: rgba(255, 255, 255, 0.5);
+	}
+	&:hover {
+		padding: 5px 10px;
+		width: 90px;
+		background-color: #fcdf4c;
+		path {
+			fill: #1d1d1c;
+		}
+	}
+}
+
+.kio-modal.is-rtl .kio-logo {
+	left: unset;
+	right: 0;
+	border-radius: 10px 0 10px 0;
+}
+
+.kio-banner {
+	.kio-logo {
+		left: unset;
+		right: 0;
+		border-radius: 10px 0 0 0;
+	}
+	&.is-rtl .kio-logo {
+		left: unset;
+		right: 0;
+		border-radius: 0 10px 0 0;
+	}
+}

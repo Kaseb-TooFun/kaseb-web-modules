@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { config } from '../utils';
-import dispatchBanner from './banner';
+import dispatchBanner from './ContentCard';
 import dispatchReaction from './action';
 
 const applayReactions = (items: { id: string; value: string }[]) => {
@@ -10,6 +10,7 @@ const applayReactions = (items: { id: string; value: string }[]) => {
 		const { data, type } = value;
 		switch (type) {
 			case 'banner':
+			case 'modal':
 				return dispatchBanner(item.id, data);
 			case 'action':
 				return dispatchReaction(item.id, data);
@@ -44,15 +45,25 @@ export const initReactions = () => {
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498823',
 			value:
-				'{"type":"banner","data":{"name":"hover banner","template":"bottom-banner","isRTL":true,"description":"hello man","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
+				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner","isRTL":true,"description":"hello man","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
 		},
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498854',
 			value:
-				'{"type":"banner","data":{"name":"hover banner","template":"top-banner","description":"hello man","bgColor":"#2e4057","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"on-click","sourceSelector": ".fa-facebook","isCloseable":true}}'
+				'{"type":"banner","data":{"name":"on-click banner","template":"top-banner","description":"hello man","bgColor":"#2e4057","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"on-click","sourceSelector":".fa-facebook","isCloseable":true}}'
+		},
+		{
+			id: 'ed792a13-fd66-43b1-9359-0ec37d498855',
+			value:
+				'{"type":"banner","data":{"name":"my modal","template":"modal","title":"test title","description":"hello man","bgColor":"#2e4057","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"on-click","sourceSelector":".fa-twitter","isCloseable":true}}'
+		},
+		{
+			id: 'ed792a13-fd66-43b1-9359-0ec37d498856',
+			value:
+				'{"type":"banner","data":{"name":"my idle modal","template":"modal","title":"test title","description":"idle modal","bgColor":"#2e4057","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"idle-5","sourceSelector":".fa-twitter","isCloseable":true}}'
 		}
 	];
-	// return applayReactions(data);
+	return applayReactions(data);
 	if (config.id) {
 		const baseUrl = process.env.BASE_URL || 'https://api.mykaseb.xyz';
 		axios
