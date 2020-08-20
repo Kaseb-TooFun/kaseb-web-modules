@@ -68,3 +68,51 @@ export const addJs = (src: string) => {
 	el.type = "text/javascript'";
 	appendToHead(el);
 };
+
+export const setIdleTimeout = (
+	callback: (...args: any[]) => void,
+	ms: number,
+	once: boolean = true
+) => {
+	const DOCUMENT_EVENTS = [
+		'mousemove',
+		'mousedown',
+		'click',
+		'touchmove',
+		'touchstart',
+		'touchend',
+		'keydown',
+		'keypress'
+	];
+	const WINDOW_EVENTS = ['scroll', 'load'];
+	let timeoutHandler = 0;
+	const resetTimer = () => {
+		clearTimeout(timeoutHandler);
+		if (once) {
+			timeoutHandler = window.setTimeout(runOnce, ms);
+		} else {
+			timeoutHandler = window.setTimeout(callback, ms);
+		}
+	};
+
+	const runOnce = () => {
+		callback();
+		deactivate();
+	};
+
+	const deactivate = () => {
+		DOCUMENT_EVENTS.forEach((eventType) =>
+			document.removeEventListener(eventType, resetTimer)
+		);
+		WINDOW_EVENTS.forEach((eventType) =>
+			window.removeEventListener(eventType, resetTimer)
+		);
+	};
+
+	DOCUMENT_EVENTS.forEach((eventType) =>
+		document.addEventListener(eventType, resetTimer)
+	);
+	WINDOW_EVENTS.forEach((eventType) =>
+		window.addEventListener(eventType, resetTimer)
+	);
+};
