@@ -27,11 +27,11 @@
 	}
 
 	.kio-close-btn {
+		box-sizing: border-box;
 		position: absolute;
 		left: 10px;
 		top: 10px;
 		background-color: rgba(255, 255, 255, 0.2);
-		transition: all 0.2s ease;
 		cursor: pointer;
 		color: rgba(0, 0, 0, 0.5);
 		border-radius: 50%;
