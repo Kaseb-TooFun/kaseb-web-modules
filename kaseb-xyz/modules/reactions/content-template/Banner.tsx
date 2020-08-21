@@ -51,36 +51,46 @@ export default class Banner extends Component<IProps, IState> {
 			case 'idle-60':
 				return setIdleTimeout(this.show, 60000);
 			case 'on-hover':
-				return this.onHover();
+				return this.initOnHover();
 			case 'on-click':
-				return this.onClick();
+				return document.addEventListener('click', this.onClick);
 
 			default:
 				break;
 		}
 	}
 
+	initOnHover = () => {
+		const { sourceSelector } = this.props.data;
+		const item = document.querySelector(sourceSelector || 'x');
+		if (item) {
+			item.addEventListener('mouseenter', this.onHover);
+		} else {
+			window.setTimeout(this.initOnHover, 1000);
+		}
+	};
+
 	onHover = () => {
 		const { sourceSelector } = this.props.data;
 		const item = document.querySelector(sourceSelector || 'x');
 		if (item) {
-			item.addEventListener('mouseenter', this.show, { once: true });
+			this.show();
+			item.removeEventListener('mouseenter', this.onHover);
 		}
 	};
 
-	onClick = () => {
+	onClick = (event: MouseEvent) => {
 		const { sourceSelector } = this.props.data;
 		const item = document.querySelector(sourceSelector || 'x');
-		if (item) {
-			item.addEventListener('click', this.show, {
-				once: true,
-				passive: true
-			});
+		if (item && item.isEqualNode(event.target)) {
+			event.preventDefault();
+			this.show();
 		}
 	};
 
 	show = () => {
 		this.setState({ isVisible: true });
+		document.removeEventListener('click', this.onClick);
 	};
 
 	close = () => {
@@ -115,8 +125,8 @@ export default class Banner extends Component<IProps, IState> {
 		} = data;
 		const entranceAnimation =
 			template == 'top-banner'
-				? 'kio-a-bounceInUp'
-				: 'kio-a-bounceInDown';
+				? 'kio-a-bounceInDown'
+				: 'kio-a-bounceInUp';
 		const classStr = `kio-banner kio-${template} kio-a-animated ${entranceAnimation} ${
 			isRTL === true ? 'is-rtl' : ''
 		}`;

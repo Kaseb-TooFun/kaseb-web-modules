@@ -49,31 +49,41 @@ export default class Banner extends Component<IProps, IState> {
 			case 'idle-60':
 				return setIdleTimeout(this.show, 60000);
 			case 'on-hover':
-				return this.onHover();
+				return this.initOnHover();
 			case 'on-click':
-				return this.onClick();
+				return document.addEventListener('click', this.onClick);
 
 			default:
 				break;
 		}
 	}
 
+	initOnHover = () => {
+		const { sourceSelector } = this.props.data;
+		const item = document.querySelector(sourceSelector || 'x');
+		if (item) {
+			item.addEventListener('mouseenter', this.onHover);
+		} else {
+			window.setTimeout(this.initOnHover, 1000);
+		}
+	};
+
 	onHover = () => {
 		const { sourceSelector } = this.props.data;
 		const item = document.querySelector(sourceSelector || 'x');
 		if (item) {
-			item.addEventListener('mouseenter', this.show, { once: true });
+			this.show();
+			item.removeEventListener('mouseenter', this.onHover);
 		}
 	};
 
-	onClick = () => {
+	onClick = (event: MouseEvent) => {
 		const { sourceSelector } = this.props.data;
 		const item = document.querySelector(sourceSelector || 'x');
-		if (item) {
-			item.addEventListener('click', this.show, {
-				once: true,
-				passive: true
-			});
+		if (item && item.isEqualNode(event.target)) {
+			event.preventDefault();
+			this.show();
+			document.removeEventListener('click', this.onClick);
 		}
 	};
 

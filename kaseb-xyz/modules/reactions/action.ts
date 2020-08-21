@@ -4,12 +4,23 @@ const run = (id: string, data: any) => {
 	const { type } = data;
 	switch (type) {
 		case 'hover':
-			return onHover(data);
+			return initOnHover(data);
 		case 'click':
-			return onClick(data);
+			return initOnClick(data);
 
 		default:
 			break;
+	}
+};
+
+const initOnHover = (data: any) => {
+	const { selector, destSelector } = data;
+	const item = document.querySelector(selector || 'x');
+	const destItem = document.querySelector(destSelector || selector || 'x');
+	if (item && destItem) {
+		onHover(data);
+	} else {
+		window.setTimeout(initOnHover, 1000);
 	}
 };
 
@@ -29,6 +40,17 @@ const onHover = (data: any) => {
 			() => destItem.classList.remove(effect),
 			{ once: once === true }
 		);
+	}
+};
+
+const initOnClick = (data: any) => {
+	const { selector, destSelector } = data;
+	const item = document.querySelector(selector || 'x');
+	const destItem = document.querySelector(destSelector || selector || 'x');
+	if (item && destItem) {
+		onClick(data);
+	} else {
+		window.setTimeout(initOnClick, 1000);
 	}
 };
 
