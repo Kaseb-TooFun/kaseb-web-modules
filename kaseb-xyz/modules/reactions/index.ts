@@ -45,7 +45,7 @@ export const initReactions = () => {
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498823',
 			value:
-				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner","isRTL":true,"description":"hello man","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
+				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner","bgColor":"#2e4057","isRTL":true,"description":"This is Visualize, a responsive site template designed by TEMPLATED and released for free under the Creative Commons License.","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
 		},
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498854',
@@ -60,7 +60,7 @@ export const initReactions = () => {
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498856',
 			value:
-				'{"type":"banner","data":{"name":"my idle modal","template":"modal","title":"test title","description":"idle modal","bgColor":"#2e4057","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"idle-5","sourceSelector":".fa-twitter","isCloseable":true}}'
+				'{"type":"banner","data":{"name":"my idle modal","template":"modal","title":"test title","description":"idle modal","bgColor":"#2e4057","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"idle-30","sourceSelector":".fa-twitter","isCloseable":true}}'
 		}
 	];
 	// return applayReactions(data);

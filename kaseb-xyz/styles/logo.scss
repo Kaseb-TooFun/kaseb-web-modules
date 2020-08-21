@@ -33,13 +33,14 @@
 
 .kio-banner {
 	.kio-logo {
-		right: unset;
-		left: 0;
-		border-radius: 0 10px 0 0;
-	}
-	&.is-rtl .kio-logo {
-		left: unset;
+		bottom: 0;
 		right: 0;
+		left: unset;
 		border-radius: 10px 0 0 0;
+	}
+	&.kio-bottom-banner .kio-logo {
+		top: 0;
+		bottom: unset;
+		border-radius: 0 0 0 10px;
 	}
 }
