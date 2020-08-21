@@ -3,3 +3,7 @@
 @import './modal';
 @import './inspector-box';
 @import './animate.min.css';
+
+#kio-app * {
+	box-sizing: border-box;
+}

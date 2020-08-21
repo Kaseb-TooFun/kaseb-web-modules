@@ -7,6 +7,10 @@
 	text-align: center;
 	padding-top: 1rem;
 	padding-bottom: 1rem;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: center;
+	align-items: center;
 
 	&.kio-top-banner {
 		top: 0;
@@ -16,10 +20,14 @@
 		bottom: 0;
 	}
 
+	.kio-description {
+		font-size: 1.2em;
+	}
+
 	.kio-btn {
 		display: inline-block;
-		margin-top: 10px;
 		padding: 2px 10px;
+		margin-right: 20px;
 		border-radius: 5px;
 		color: #fff;
 		background-color: #0080ff;
@@ -27,7 +35,6 @@
 	}
 
 	.kio-close-btn {
-		box-sizing: border-box;
 		position: absolute;
 		left: 10px;
 		top: 10px;
