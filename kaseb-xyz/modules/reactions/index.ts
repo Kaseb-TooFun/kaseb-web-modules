@@ -65,7 +65,7 @@ export const initReactions = () => {
 	];
 	// return applayReactions(data);
 	if (config.id) {
-		const baseUrl = process.env.BASE_URL || 'https://api.kaseb.xyz';
+		const baseUrl = process.env.BASE_URL || 'https://dev-api.mykaseb.ir';
 		axios
 			.get(`${baseUrl}/api/v1/websites/${config.id}/configs`)
 			.then((response) => {
