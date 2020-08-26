@@ -14,9 +14,9 @@ const run = (id: string, data: any) => {
 };
 
 const initOnHover = (data: any) => {
-	const { selector, destSelector } = data;
-	const item = document.querySelector(selector || 'x');
-	const destItem = document.querySelector(destSelector || selector || 'x');
+	const { sourceSelector, destSelector } = data;
+	const item = document.querySelector(sourceSelector || 'x');
+	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
 	if (item && destItem) {
 		onHover(data);
 	} else {
@@ -25,9 +25,9 @@ const initOnHover = (data: any) => {
 };
 
 const onHover = (data: any) => {
-	const { selector, destSelector, once, effect } = data;
-	const item = document.querySelector(selector || 'x');
-	const destItem = document.querySelector(destSelector || selector || 'x');
+	const { sourceSelector, destSelector, once, effect } = data;
+	const item = document.querySelector(sourceSelector || 'x');
+	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
 	if (item && destItem) {
 		destItem.classList.add('kio-a-animated');
 		item.addEventListener(
@@ -44,9 +44,9 @@ const onHover = (data: any) => {
 };
 
 const initOnClick = (data: any) => {
-	const { selector, destSelector } = data;
-	const item = document.querySelector(selector || 'x');
-	const destItem = document.querySelector(destSelector || selector || 'x');
+	const { sourceSelector, destSelector } = data;
+	const item = document.querySelector(sourceSelector || 'x');
+	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
 	if (item && destItem) {
 		onClick(data);
 	} else {
