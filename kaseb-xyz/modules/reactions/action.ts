@@ -55,9 +55,9 @@ const initOnClick = (data: any) => {
 };
 
 const onClick = (data: any) => {
-	const { selector, destSelector, once, effect } = data;
-	const item = document.querySelector(selector || 'x');
-	const destItem = document.querySelector(destSelector || selector || 'x');
+	const { sourceSelector, destSelector, once, effect } = data;
+	const item = document.querySelector(sourceSelector || 'x');
+	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
 	if (item && destItem) {
 		destItem.classList.add('kio-a-animated');
 		item.addEventListener(
