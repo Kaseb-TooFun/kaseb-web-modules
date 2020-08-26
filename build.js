@@ -4,10 +4,8 @@ const version = require('./package.json')['version'];
 
 console.log({ version });
 
-fs.renameSync(path.join(__dirname, 'dist'), path.join(__dirname, version));
-fs.mkdirSync(path.join(__dirname, 'dist'));
 fs.renameSync(
-	path.join(__dirname, version),
+	path.join(__dirname, 'dist/build'),
 	path.join(__dirname, `dist/${version}`)
 );
 
