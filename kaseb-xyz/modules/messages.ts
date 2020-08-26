@@ -35,6 +35,14 @@ const onReciveMessage = (message: MessageEvent) => {
 };
 
 export const initMessages = () => {
-	postMessage('kio-loaded');
-	window.addEventListener('message', onReciveMessage);
+	const isLoaded = Array.from(document.styleSheets).some(
+		(s) =>
+			s.href.includes('kaseb-module.s3.') && s.href.includes('/style.css')
+	);
+	if (isLoaded) {
+		postMessage('kio-loaded');
+		window.addEventListener('message', onReciveMessage);
+	} else {
+		setTimeout(initMessages, 300);
+	}
 };
