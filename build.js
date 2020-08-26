@@ -9,11 +9,14 @@ fs.renameSync(
 	path.join(__dirname, `dist/${version}`)
 );
 
-// move style.css
-fs.renameSync(
-	path.join(__dirname, `dist/${version}/styles/main.css`),
-	path.join(__dirname, `dist/${version}/style.css`)
+// move style.css & fix fonts relative path
+const style = fs.readFileSync(`dist/${version}/styles/main.css`).toString();
+fs.writeFileSync(
+	`dist/${version}/style.css`,
+	style.replace(/url\(\//g, 'url(')
 );
 
 // remove style dir
-fs.rmdirSync(path.join(__dirname, `dist/${version}/styles`));
+fs.rmdirSync(path.join(__dirname, `dist/${version}/styles`), {
+	recursive: true
+});
