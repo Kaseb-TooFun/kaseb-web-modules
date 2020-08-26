@@ -45,7 +45,7 @@ export const initReactions = () => {
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498823',
 			value:
-				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner","bgColor":"#2e4057","isRTL":true,"description":"This is Visualize, a responsive site template designed by TEMPLATED and released for free under the Creative Commons License.","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
+				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner", "fontFamily":"Vazir","bgColor":"#2e4057","isRTL":true,"description":"تقاضا می‌گردد هر گونه ایراد یا کاستی در قلم می‌بینید و یا پیشنهادی برای بهتر شدن آن دارید در قسمت ایشوهای گیت‌هاب و یا از طریق آدرس saber.rastikerdar بر روی Gmail.com در میان بگذارید.","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
 		},
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498854',
