@@ -1,5 +1,6 @@
 const path = require('path');
 const fs = require('fs');
+const del = require('del');
 const version = require('./package.json')['version'];
 
 console.log({ version });
@@ -17,6 +18,4 @@ fs.writeFileSync(
 );
 
 // remove style dir
-fs.rmdirSync(path.join(__dirname, `dist/${version}/styles`), {
-	recursive: true
-});
+del.sync(`dist/${version}/styles`);
