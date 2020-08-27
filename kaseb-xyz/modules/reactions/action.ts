@@ -4,28 +4,29 @@ const run = (id: string, data: any) => {
 	const { type } = data;
 	switch (type) {
 		case 'hover':
-			return initOnHover(data);
+			return initOnHover(id, data);
 		case 'click':
-			return initOnClick(data);
+			return initOnClick(id, data);
 
 		default:
 			break;
 	}
 };
 
-const initOnHover = (data: any) => {
+const initOnHover = (id: string, data: any) => {
 	const { sourceSelector, destSelector } = data;
 	const item = document.querySelector(sourceSelector || 'x');
 	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
 	if (item && destItem) {
-		onHover(data);
+		onHover(id, data);
 	} else {
 		window.setTimeout(initOnHover, 1000);
 	}
 };
 
-const onHover = (data: any) => {
+const onHover = (id: string, data: any) => {
 	const { sourceSelector, destSelector, once, effect } = data;
+	const isPreview = id === "preview";
 	const item = document.querySelector(sourceSelector || 'x');
 	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
 	if (item && destItem) {
@@ -33,28 +34,29 @@ const onHover = (data: any) => {
 		item.addEventListener(
 			'mouseenter',
 			() => destItem.classList.add(effect),
-			{ once: once === true }
+			{ once: (isPreview || once === true) }
 		);
 		item.addEventListener(
 			'mouseleave',
 			() => destItem.classList.remove(effect),
-			{ once: once === true }
+			{ once: (isPreview || once === true) }
 		);
 	}
 };
 
-const initOnClick = (data: any) => {
+const initOnClick = (id: string, data: any) => {
 	const { sourceSelector, destSelector } = data;
 	const item = document.querySelector(sourceSelector || 'x');
 	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
 	if (item && destItem) {
-		onClick(data);
+		onClick(id, data);
 	} else {
 		window.setTimeout(initOnClick, 1000);
 	}
 };
 
-const onClick = (data: any) => {
+const onClick = (id: string, data: any) => {
+	const isPreview = id === "preview";
 	const { sourceSelector, destSelector, once, effect } = data;
 	const item = document.querySelector(sourceSelector || 'x');
 	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
@@ -67,7 +69,7 @@ const onClick = (data: any) => {
 				setTimeout(() => destItem.classList.remove(effect), 2000);
 			},
 			{
-				once: once === true,
+				once: (isPreview || once === true),
 				passive: true
 			}
 		);

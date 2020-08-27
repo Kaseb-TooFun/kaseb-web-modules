@@ -33,9 +33,12 @@
 				}
 			}
 		};
+		let url = id?
+			`https://dev-api.mykaseb.ir/api/v1/modules/${id}/latest`:
+			'https://dev-api.mykaseb.ir/api/v1/modules/latest';
 		httpRequest.open(
 			'GET',
-			'https://dev-api.mykaseb.ir/api/v1/modules/' + id + '/latest'
+			url
 		);
 		httpRequest.send();
 	}

@@ -19,8 +19,9 @@ export default class Banner extends Component<IProps, IState> {
 
 	componentDidMount() {
 		const { data, id } = this.props;
+		const isPreview = id === "preview";
 		const { condition } = data;
-		if (id == 'preview') return this.setState({ isVisible: true });
+		// if (id == 'preview') return this.setState({ isVisible: true });
 
 		const modals = storage.getItem('modals');
 		if (modals && modals[id] && modals[id].show == true) return;
@@ -29,25 +30,25 @@ export default class Banner extends Component<IProps, IState> {
 			case 'on-load':
 				return setTimeout(this.show, 1);
 			case 'wait-5':
-				return setTimeout(this.show, 5000);
+				return setTimeout(this.show, isPreview? 1000: 5000);
 			case 'wait-10':
-				return setTimeout(this.show, 10000);
+				return setTimeout(this.show, isPreview? 1000: 10000);
 			case 'wait-20':
-				return setTimeout(this.show, 20000);
+				return setTimeout(this.show, isPreview? 1000: 20000);
 			case 'wait-30':
-				return setTimeout(this.show, 30000);
+				return setTimeout(this.show, isPreview? 1000: 30000);
 			case 'wait-60':
-				return setTimeout(this.show, 60000);
+				return setTimeout(this.show, isPreview? 1000: 60000);
 			case 'idle-5':
-				return setIdleTimeout(this.show, 5000);
+				return setIdleTimeout(this.show, isPreview? 1000: 5000);
 			case 'idle-10':
-				return setIdleTimeout(this.show, 10000);
+				return setIdleTimeout(this.show, isPreview? 1000: 10000);
 			case 'idle-20':
-				return setIdleTimeout(this.show, 20000);
+				return setIdleTimeout(this.show, isPreview? 1000: 20000);
 			case 'idle-30':
-				return setIdleTimeout(this.show, 30000);
+				return setIdleTimeout(this.show, isPreview? 1000: 30000);
 			case 'idle-60':
-				return setIdleTimeout(this.show, 60000);
+				return setIdleTimeout(this.show, isPreview? 1000: 60000);
 			case 'on-hover':
 				return this.initOnHover();
 			case 'on-click':
@@ -93,8 +94,10 @@ export default class Banner extends Component<IProps, IState> {
 
 	close = () => {
 		const { id, data } = this.props;
+		const isPreview = id === "preview";
 		const { showOnce } = data;
-		if (showOnce != true) return this.setState({ isVisible: false });
+		if (!isPreview && showOnce != true)
+			return this.setState({ isVisible: false });
 
 		const modals = storage.getItem('modals') || {};
 		if (modals[id]) {
