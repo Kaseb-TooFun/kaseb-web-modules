@@ -1,8 +1,8 @@
-cache:
-  untracked: true
-  key: "$CI_PROJECT_ID"
-  paths:
-   - node_modules/
+# cache:
+#   untracked: true
+#   key: "$CI_PROJECT_ID"
+#   paths:
+#    - node_modules/
 
 stages:
   - build
