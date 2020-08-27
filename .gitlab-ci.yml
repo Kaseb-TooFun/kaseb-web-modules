@@ -48,6 +48,7 @@ deploy-dev:
   image: python:latest
   script:
     - pip install awscli
+    - ls -alR dev
     - aws --endpoint-url https://s3.ir-thr-at1.arvanstorage.com s3 cp dev s3://kaseb-module/dist-dev --recursive --acl public-read
     - pwd
     - rm -rf dev
