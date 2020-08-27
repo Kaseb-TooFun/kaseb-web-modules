@@ -24,7 +24,7 @@ export default class Banner extends Component<IProps, IState> {
 		// if (id == 'preview') return this.setState({ isVisible: true });
 
 		const banners = storage.getItem('banners');
-		if (banners && banners[id] && banners[id].show == true) return;
+		if (!isPreview && banners && banners[id] && banners[id].show == true) return;
 		switch (condition) {
 			case 'wait-0':
 			case 'on-load':
