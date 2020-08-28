@@ -33,9 +33,9 @@
 				}
 			}
 		};
-		let url = id?
-			`https://dev-api.mykaseb.ir/api/v1/modules/${id}/latest`:
-			'https://dev-api.mykaseb.ir/api/v1/modules/latest';
+		let url = (id === "demo" || id === "preview")?
+			'https://dev-api.mykaseb.ir/api/v1/modules/latest':
+			`https://dev-api.mykaseb.ir/api/v1/modules/${id}/latest`;
 		httpRequest.open(
 			'GET',
 			url
