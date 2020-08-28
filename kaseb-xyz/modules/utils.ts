@@ -1,6 +1,7 @@
 export const config = {
 	id: '',
-	targetOrigin: '*'
+	targetOrigin: '*',
+	ignoreSavedReactions: false
 };
 
 const db = window.localStorage;

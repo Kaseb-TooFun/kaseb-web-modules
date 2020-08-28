@@ -1,3 +1,5 @@
+import {config} from "./modules/utils";
+
 (function () {
 	var addScript = function (t) {
 		var script = document.createElement('script');
@@ -15,6 +17,8 @@
 		head.appendChild(link);
 	};
 	var meta = document.querySelector('meta[name="kio-verification"]');
+	const urlParams = new URLSearchParams(window.location.search)
+	config.ignoreSavedReactions = urlParams.get('ignore_saved_reactions') === 'true';
 	if (meta) {
 		var id = meta.getAttribute('content');
 		var httpRequest = new XMLHttpRequest();

@@ -64,7 +64,7 @@ export const initReactions = () => {
 		}
 	];
 	// return applayReactions(data);
-	if (config.id) {
+	if (!config.ignoreSavedReactions && config.id !== "demo" && config.id !== "preview") {
 		const baseUrl = process.env.BASE_URL || 'https://dev-api.mykaseb.ir';
 		axios
 			.get(`${baseUrl}/api/v1/websites/${config.id}/configs`)
