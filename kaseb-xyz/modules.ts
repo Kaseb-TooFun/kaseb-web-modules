@@ -2,9 +2,11 @@ import { config } from './modules/utils';
 import { initReactions } from './modules/reactions';
 import { initMessages } from './modules/messages';
 
-const meta = document.querySelector('meta[name="kio-verification"]');
-if (meta) {
-	config.id = meta.getAttribute('content');
+const script = Array.from(document.scripts)
+	.map((item) => item.src)
+	.find((src) => (src || '').indexOf('kio.js?id=') != -1);
+if (script) {
+	config.id = script.replace(/(.*)id=/, '');
 
 	console.log(
 		'%cKaseb%c.%cxyz',

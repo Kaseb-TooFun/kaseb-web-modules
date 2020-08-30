@@ -16,11 +16,18 @@ import {config} from "./modules/utils";
 		link.type = 'text/css';
 		head.appendChild(link);
 	};
-	var meta = document.querySelector('meta[name="kio-verification"]');
 	const urlParams = new URLSearchParams(window.location.search)
 	config.ignoreSavedReactions = urlParams.get('ignore_saved_reactions') === 'true';
-	if (meta) {
-		var id = meta.getAttribute('content');
+
+	var script = Array.from(document.scripts)
+		.map(function (item) {
+			return item.src;
+		})
+		.find(function (src) {
+			return (src || '').indexOf('kio.js?id=') != -1;
+		});
+	if (script) {
+		var id = script.replace(/(.*)id=/, '');
 		var httpRequest = new XMLHttpRequest();
 		httpRequest.onreadystatechange = function (event) {
 			if (

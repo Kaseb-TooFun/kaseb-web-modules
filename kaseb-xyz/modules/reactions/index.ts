@@ -30,22 +30,22 @@ export const initReactions = () => {
 		{
 			id: '9e1b8d0d-75ff-4995-ad2a-31bdac176923',
 			value:
-				'{"type":"action","data":{"selector":".fa-instagram","once": true,"destSelector":".avatar","type":"click","effect":"kio-a-bounce"}}'
+				'{"type":"action","data":{"sourceSelector":".fa-instagram","once": true,"destSelector":".avatar","type":"click","effect":"kio-a-bounce"}}'
 		},
 		{
 			id: '9e1b8d0d-75ff-4995-ad2a-31bdac176924',
 			value:
-				'{"type":"action","data":{"selector":".fa-envelope-o","destSelector":".avatar","type":"hover","effect":"kio-a-wobble"}}'
+				'{"type":"action","data":{"sourceSelector":".fa-envelope-o","destSelector":".avatar","type":"hover","effect":"kio-a-wobble"}}'
 		},
 		{
 			id: '9e1b8d0d-75ff-4995-ad2a-31bdac176925',
 			value:
-				'{"type":"action","data":{"selector":".fa-facebook","type":"hover","effect":"kio-a-wobble"}}'
+				'{"type":"action","data":{"sourceSelector":".fa-facebook","type":"hover","effect":"kio-a-wobble"}}'
 		},
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498823',
 			value:
-				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner", "fontFamily":"Vazir","bgColor":"#2e4057","isRTL":true,"description":"تقاضا می‌گردد هر گونه ایراد یا کاستی در قلم می‌بینید و یا پیشنهادی برای بهتر شدن آن دارید در قسمت ایشوهای گیت‌هاب و یا از طریق آدرس saber.rastikerdar بر روی Gmail.com در میان بگذارید.","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
+				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner", "fontFamily":"kio-Vazir","bgColor":"#2e4057","isRTL":true,"description":"تقاضا می‌گردد هر گونه ایراد یا کاستی در قلم می‌بینید و یا پیشنهادی برای بهتر شدن آن دارید در قسمت ایشوهای گیت‌هاب و یا از طریق آدرس saber.rastikerdar بر روی Gmail.com در میان بگذارید.","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
 		},
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498854',
