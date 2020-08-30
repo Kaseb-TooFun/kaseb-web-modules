@@ -1,5 +1,3 @@
-import {config} from "./modules/utils";
-
 (function () {
 	var addScript = function (t) {
 		var script = document.createElement('script');
@@ -16,9 +14,6 @@ import {config} from "./modules/utils";
 		link.type = 'text/css';
 		head.appendChild(link);
 	};
-	const urlParams = new URLSearchParams(window.location.search)
-	config.ignoreSavedReactions = urlParams.get('ignore_saved_reactions') === 'true';
-
 	var script = Array.from(document.scripts)
 		.map(function (item) {
 			return item.src;
@@ -44,12 +39,9 @@ import {config} from "./modules/utils";
 				}
 			}
 		};
-		let url = (id === "demo" || id === "preview")?
-			'https://dev-api.mykaseb.ir/api/v1/modules/latest':
-			`https://dev-api.mykaseb.ir/api/v1/modules/${id}/latest`;
 		httpRequest.open(
 			'GET',
-			url
+			'https://dev-api.mykaseb.ir/api/v1/modules/' + id + '/latest'
 		);
 		httpRequest.send();
 	}

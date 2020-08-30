@@ -8,6 +8,10 @@ const script = Array.from(document.scripts)
 if (script) {
 	config.id = script.replace(/(.*)id=/, '');
 
+	const urlParams = new URLSearchParams(window.location.search);
+	config.ignoreSavedReactions =
+		urlParams.get('ignore_saved_reactions') === 'true';
+
 	console.log(
 		'%cKaseb%c.%cxyz',
 		'color:#ffbf00;font-size:3rem;font-weight:bold;text-shadow: 2px 2px #000',
