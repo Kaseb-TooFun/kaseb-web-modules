@@ -13,7 +13,7 @@ build-dev:
   image: mhart/alpine-node:11
   script:
    - yarn install
-   - export BASE_URL=https://dev-api.mykaseb.ir
+   - export BASE_URL=https://api.mykaseb.ir
    - CI=false yarn build
    - rm -rf dev
    - mv dist dev
