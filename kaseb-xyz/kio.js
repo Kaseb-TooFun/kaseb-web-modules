@@ -41,7 +41,7 @@
 		};
 		httpRequest.open(
 			'GET',
-			'https://dev-api.mykaseb.ir/api/v1/modules/' + id + '/latest'
+			'https://api.mykaseb.ir/api/v1/modules/' + id + '/latest'
 		);
 		httpRequest.send();
 	}
