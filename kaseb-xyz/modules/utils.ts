@@ -8,14 +8,15 @@ const db = window.localStorage;
 
 export const storage = {
 	setItem: (key: string, value: Object | string | number) => {
-		db.setItem(key, JSON.stringify(value));
+		db.setItem(`kio-${key}`, JSON.stringify(value));
 	},
 	getItem: (key: string) => {
-		const value = db.getItem(key);
+		const value = db.getItem(`kio-${key}`);
 		return value ? JSON.parse(value) : null;
 	},
-	removeItem: db.removeItem
+	removeItem: (key: string) => db.removeItem(`kio-${key}`)
 };
+
 export const appendToHead = (el) => {
 	const head = document.head || document.getElementsByTagName('HEAD')[0];
 	head.appendChild(el);
@@ -116,4 +117,44 @@ export const setIdleTimeout = (
 	WINDOW_EVENTS.forEach((eventType) =>
 		window.addEventListener(eventType, resetTimer)
 	);
+};
+
+export const uuid4 = () =>
+	'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+		const r = (Math.random() * 16) | 0,
+			v = c == 'x' ? r : (r & 0x3) | 0x8;
+		return v.toString(16);
+	});
+
+export const xhr = (
+	method: 'GET' | 'POST',
+	path: string,
+	data?: object
+) => {
+	return new Promise((resolve, reject) => {
+		let xhr = new XMLHttpRequest();
+		xhr.open(method, path);
+		xhr.onload = function () {
+			if (this.status == 200) {
+				resolve(xhr.response);
+			} else {
+				reject({
+					status: this.status,
+					statusText: xhr.statusText
+				});
+			}
+		};
+		xhr.onerror = function () {
+			reject({
+				status: this.status,
+				statusText: xhr.statusText
+			});
+		};
+		if (data) {
+			xhr.setRequestHeader('Content-Type', 'application/json');
+			xhr.send(JSON.stringify(data));
+		} else {
+			xhr.send();
+		}
+	});
 };

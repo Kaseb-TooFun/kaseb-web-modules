@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import analytics from '../analytics';
 
 const run = (id: string, data: any) => {
 	const { type } = data;
@@ -16,7 +17,9 @@ const run = (id: string, data: any) => {
 const initOnHover = (id: string, data: any) => {
 	const { sourceSelector, destSelector } = data;
 	const item = document.querySelector(sourceSelector || 'x');
-	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
+	const destItem = document.querySelector(
+		destSelector || sourceSelector || 'x'
+	);
 	if (item && destItem) {
 		onHover(id, data);
 	} else {
@@ -26,20 +29,27 @@ const initOnHover = (id: string, data: any) => {
 
 const onHover = (id: string, data: any) => {
 	const { sourceSelector, destSelector, once, effect } = data;
-	const isPreview = id === "preview";
+	const isPreview = id === 'preview';
 	const item = document.querySelector(sourceSelector || 'x');
-	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
+	const destItem = document.querySelector(
+		destSelector || sourceSelector || 'x'
+	);
 	if (item && destItem) {
 		destItem.classList.add('kio-a-animated');
 		item.addEventListener(
 			'mouseenter',
-			() => destItem.classList.add(effect),
-			{ once: (isPreview || once === true) }
+			() => {
+				if (!isPreview) {
+					analytics.trackEvent(id, 'animation_run');
+				}
+				destItem.classList.add(effect);
+			},
+			{ once: isPreview || once === true }
 		);
 		item.addEventListener(
 			'mouseleave',
 			() => destItem.classList.remove(effect),
-			{ once: (isPreview || once === true) }
+			{ once: isPreview || once === true }
 		);
 	}
 };
@@ -47,7 +57,9 @@ const onHover = (id: string, data: any) => {
 const initOnClick = (id: string, data: any) => {
 	const { sourceSelector, destSelector } = data;
 	const item = document.querySelector(sourceSelector || 'x');
-	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
+	const destItem = document.querySelector(
+		destSelector || sourceSelector || 'x'
+	);
 	if (item && destItem) {
 		onClick(id, data);
 	} else {
@@ -56,20 +68,25 @@ const initOnClick = (id: string, data: any) => {
 };
 
 const onClick = (id: string, data: any) => {
-	const isPreview = id === "preview";
+	const isPreview = id === 'preview';
 	const { sourceSelector, destSelector, once, effect } = data;
 	const item = document.querySelector(sourceSelector || 'x');
-	const destItem = document.querySelector(destSelector || sourceSelector || 'x');
+	const destItem = document.querySelector(
+		destSelector || sourceSelector || 'x'
+	);
 	if (item && destItem) {
 		destItem.classList.add('kio-a-animated');
 		item.addEventListener(
 			'click',
 			() => {
+				if (!isPreview) {
+					analytics.trackEvent(id, 'animation_click_item');
+				}
 				destItem.classList.add(effect);
 				setTimeout(() => destItem.classList.remove(effect), 2000);
 			},
 			{
-				once: (isPreview || once === true),
+				once: isPreview || once === true,
 				passive: true
 			}
 		);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'preact';
 import { storage, setIdleTimeout } from '../../utils';
+import analytics from '../../analytics';
 import KasebLogo from '../../../assets/KasebLogo';
 import CloseIcon from '../../../assets/CloseIcon';
 
@@ -16,39 +17,44 @@ interface IState {
 
 export default class Banner extends Component<IProps, IState> {
 	state = { isVisible: false };
+	showTime = 0;
 
 	componentDidMount() {
 		const { data, id } = this.props;
-		const isPreview = id === "preview";
+		const isPreview = id === 'preview';
 		const { condition } = data;
-		// if (id == 'preview') return this.setState({ isVisible: true });
+
+		if (!isPreview) {
+			analytics.init(id);
+		}
 
 		const banners = storage.getItem('banners');
-		if (!isPreview && banners && banners[id] && banners[id].show == true) return;
+		if (!isPreview && banners && banners[id] && banners[id].show == true)
+			return;
 		switch (condition) {
 			case 'wait-0':
 			case 'on-load':
 				return setTimeout(this.show, 1);
 			case 'wait-5':
-				return setTimeout(this.show, isPreview? 1000: 5000);
+				return setTimeout(this.show, isPreview ? 1000 : 5000);
 			case 'wait-10':
-				return setTimeout(this.show, isPreview? 1000: 10000);
+				return setTimeout(this.show, isPreview ? 1000 : 10000);
 			case 'wait-20':
-				return setTimeout(this.show, isPreview? 1000: 20000);
+				return setTimeout(this.show, isPreview ? 1000 : 20000);
 			case 'wait-30':
-				return setTimeout(this.show, isPreview? 1000: 30000);
+				return setTimeout(this.show, isPreview ? 1000 : 30000);
 			case 'wait-60':
-				return setTimeout(this.show, isPreview? 1000: 60000);
+				return setTimeout(this.show, isPreview ? 1000 : 60000);
 			case 'idle-5':
-				return setIdleTimeout(this.show, isPreview? 1000: 5000);
+				return setIdleTimeout(this.show, isPreview ? 1000 : 5000);
 			case 'idle-10':
-				return setIdleTimeout(this.show, isPreview? 1000: 10000);
+				return setIdleTimeout(this.show, isPreview ? 1000 : 10000);
 			case 'idle-20':
-				return setIdleTimeout(this.show, isPreview? 1000: 20000);
+				return setIdleTimeout(this.show, isPreview ? 1000 : 20000);
 			case 'idle-30':
-				return setIdleTimeout(this.show, isPreview? 1000: 30000);
+				return setIdleTimeout(this.show, isPreview ? 1000 : 30000);
 			case 'idle-60':
-				return setIdleTimeout(this.show, isPreview? 1000: 60000);
+				return setIdleTimeout(this.show, isPreview ? 1000 : 60000);
 			case 'on-hover':
 				return this.initOnHover();
 			case 'on-click':
@@ -58,6 +64,23 @@ export default class Banner extends Component<IProps, IState> {
 				break;
 		}
 	}
+
+	logEvent = (
+		type:
+			| 'goal'
+			| 'banner_show'
+			| 'banner_close'
+			| 'banner_button_click'
+			| 'banner_preview_time',
+		properties?: {
+			[key: string]: string[];
+		}
+	) => {
+		const { id } = this.props;
+		if (id !== 'preview') {
+			analytics.trackEvent(id, type, properties);
+		}
+	};
 
 	initOnHover = () => {
 		const { sourceSelector } = this.props.data;
@@ -88,14 +111,26 @@ export default class Banner extends Component<IProps, IState> {
 	};
 
 	show = () => {
+		this.showTime = Math.floor(new Date().getTime() / 1000);
 		this.setState({ isVisible: true });
 		document.removeEventListener('click', this.onClick);
+		this.logEvent('banner_show');
 	};
 
 	close = () => {
 		const { id, data } = this.props;
-		const isPreview = id === "preview";
+		const isPreview = id === 'preview';
 		const { showOnce } = data;
+
+		const duration =
+			Math.floor(new Date().getTime() / 1000) - this.showTime;
+		this.logEvent('banner_close', {
+			duration: [`${duration}`]
+		});
+
+		// this.logEvent('banner_preview_time', {
+		// 	duration: [`${duration}`]
+		// });
 		if (!isPreview && showOnce != true)
 			return this.setState({ isVisible: false });
 
@@ -150,6 +185,7 @@ export default class Banner extends Component<IProps, IState> {
 								backgroundColor: btnColor,
 								color: btnTextColor
 							}}
+							onClick={() => this.logEvent('banner_button_click')}
 						>
 							{btnText}
 						</a>
