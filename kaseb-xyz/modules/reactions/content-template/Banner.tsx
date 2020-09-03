@@ -55,6 +55,8 @@ export default class Banner extends Component<IProps, IState> {
 				return setIdleTimeout(this.show, isPreview ? 1000 : 30000);
 			case 'idle-60':
 				return setIdleTimeout(this.show, isPreview ? 1000 : 60000);
+			case 'scroll-to-end':
+				return this.initOnScollToEnd();
 			case 'on-hover':
 				return this.initOnHover();
 			case 'on-click':
@@ -75,6 +77,21 @@ export default class Banner extends Component<IProps, IState> {
 		if (id !== 'preview') {
 			analytics.trackEvent(id, type, properties);
 		}
+	};
+
+	initOnScollToEnd = () => {
+		window.addEventListener('scroll', this.onScroll);
+	};
+
+	onScroll = () => {
+		if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+			this.onScrollToEnd()
+		}
+	};
+
+	onScrollToEnd = () => {
+		window.removeEventListener('scroll', this.onScroll);
+		this.show();
 	};
 
 	initOnHover = () => {
@@ -175,7 +192,9 @@ export default class Banner extends Component<IProps, IState> {
 			isCloseable
 		} = data;
 		const entranceAnimation =
-			template == 'top-banner' ? 'kio-a-bounceInDown' : 'kio-a-bounceInUp';
+			template == 'top-banner'
+				? 'kio-a-bounceInDown'
+				: 'kio-a-bounceInUp';
 		const classStr = `kio-banner-${id} kio-${template} kio-a-animated ${entranceAnimation} ${
 			isRTL === true ? 'is-rtl' : ''
 		}`;

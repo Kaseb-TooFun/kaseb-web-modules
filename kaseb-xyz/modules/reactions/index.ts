@@ -78,7 +78,12 @@ export const initReactions = () => {
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498857',
 			value:
 				'{"type":"banner","data":{"name":"on-hover banner","template":"top-banner", "fontFamily":"kio-Vazir","bgColor":"#ffbf00","isRTL":true,"description":"تقاضا می‌گردد هر گونه ایراد یا کاستی در قلم می‌بینید و یا پیشنهادی برای بهتر شدن آن دارید در قسمت ایشوهای گیت‌هاب و یا از طریق آدرس saber.rastikerdar بر روی Gmail.com در میان بگذارید.","url":"https://hexboy.ir/","btnText":"press me!","condition":"wait-0","sourceSelector": ".avatar","isCloseable":true,"urlPatterns":["http://localhost:1234$", "/1235"]}}'
-		}
+		},
+		{
+			id: 'ed792a13-fd66-43b1-9359-0ec37d498858',
+			value:
+				'{"type":"banner","data":{"name":"scroll to end modal","template":"modal","title":"you scroll to end","description":"scroll modal","bgColor":"#ff0080","textColor": "#fff","url":"https://hexboy.ir/","btnTextColor": "#2e4057","btnColor":"#fff","btnText":"press me!","condition":"scroll-to-end","sourceSelector":".fa-twitter","isCloseable":true}}'
+		},
 	];
 	// return applayReactions(data);
 	if (
