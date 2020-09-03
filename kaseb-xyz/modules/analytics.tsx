@@ -44,7 +44,7 @@ export class Analytics {
 	init = (configId: string) => {
 		const newId = storage.getItem('new-user');
 		if (newId) {
-			this.trackEvent(configId, 'new_user_register');
+			this.trackEvent(configId, 'NEW_USER_REGISTER');
 			storage.removeItem('new-user');
 		}
 	};
@@ -141,15 +141,14 @@ export class Analytics {
 	trackEvent = (
 		configId: string,
 		type:
-			| 'goal'
-			| 'banner_show'
-			| 'banner_close'
-			| 'banner_button_click'
-			| 'banner_preview_time'
-			| 'animation_run'
-			| 'animation_click_item'
-			| 'new_user_register'
-			| 'session_duration',
+			| 'GOAL'
+			| 'BANNER_SHOW'
+			| 'BANNER_CLOSE'
+			| 'BANNER_BUTTON_CLICK'
+			| 'ANIMATION_RUN'
+			| 'ANIMATION_CLICK_ITEM'
+			| 'NEW_USER_REGISTER'
+			| 'SESSION_DURATION',
 		properties?: {
 			[key: string]: string[];
 		}

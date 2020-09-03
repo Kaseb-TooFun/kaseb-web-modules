@@ -40,7 +40,7 @@ const onHover = (id: string, data: any) => {
 			'mouseenter',
 			() => {
 				if (!isPreview) {
-					analytics.trackEvent(id, 'animation_run');
+					analytics.trackEvent(id, 'ANIMATION_RUN');
 				}
 				destItem.classList.add(effect);
 			},
@@ -80,7 +80,7 @@ const onClick = (id: string, data: any) => {
 			'click',
 			() => {
 				if (!isPreview) {
-					analytics.trackEvent(id, 'animation_click_item');
+					analytics.trackEvent(id, 'ANIMATION_CLICK_ITEM');
 				}
 				destItem.classList.add(effect);
 				setTimeout(() => destItem.classList.remove(effect), 2000);

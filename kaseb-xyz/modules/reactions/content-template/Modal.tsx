@@ -66,11 +66,10 @@ export default class Banner extends Component<IProps, IState> {
 
 	logEvent = (
 		type:
-			| 'goal'
-			| 'banner_show'
-			| 'banner_close'
-			| 'banner_button_click'
-			| 'banner_preview_time',
+			| 'GOAL'
+			| 'BANNER_SHOW'
+			| 'BANNER_CLOSE'
+			| 'BANNER_BUTTON_CLICK',
 		properties?: {
 			[key: string]: string[];
 		}
@@ -114,7 +113,7 @@ export default class Banner extends Component<IProps, IState> {
 		this.showTime = Math.floor(new Date().getTime() / 1000);
 		this.setState({ isVisible: true });
 		document.removeEventListener('click', this.onClick);
-		this.logEvent('banner_show');
+		this.logEvent('BANNER_SHOW');
 	};
 
 	close = () => {
@@ -124,7 +123,7 @@ export default class Banner extends Component<IProps, IState> {
 
 		const duration =
 			Math.floor(new Date().getTime() / 1000) - this.showTime;
-		this.logEvent('banner_close', {
+		this.logEvent('BANNER_CLOSE', {
 			duration: [`${duration}`]
 		});
 		if (!isPreview && showOnce != true)
@@ -192,7 +191,7 @@ export default class Banner extends Component<IProps, IState> {
 									color: btnTextColor
 								}}
 								onClick={() =>
-									this.logEvent('banner_button_click')
+									this.logEvent('BANNER_BUTTON_CLICK')
 								}
 							>
 								{btnText}

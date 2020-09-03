@@ -9,7 +9,7 @@ const applayReactions = (items: { id: string; value: string }[]) => {
 			typeof item.value == 'string' ? JSON.parse(item.value) : item.value;
 		const { data, type } = value;
 		const { urlPatterns } = data;
-		if (urlPatterns) {
+		if (urlPatterns && urlPatterns.length > 0) {
 			let currentHref = document.location.href;
 			if (document.location.pathname == '/') {
 				currentHref = currentHref.replace(/\/$/g, '');
