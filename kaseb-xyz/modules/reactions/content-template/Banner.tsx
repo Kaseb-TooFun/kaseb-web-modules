@@ -66,11 +66,7 @@ export default class Banner extends Component<IProps, IState> {
 	}
 
 	logEvent = (
-		type:
-			| 'GOAL'
-			| 'BANNER_SHOW'
-			| 'BANNER_CLOSE'
-			| 'BANNER_BUTTON_CLICK',
+		type: 'GOAL' | 'BANNER_SHOW' | 'BANNER_CLOSE' | 'BANNER_BUTTON_CLICK',
 		properties?: {
 			[key: string]: string[];
 		}
@@ -110,10 +106,26 @@ export default class Banner extends Component<IProps, IState> {
 	};
 
 	show = () => {
+		const { id, template, data } = this.props;
+		const { condition } = data;
 		this.showTime = Math.floor(new Date().getTime() / 1000);
 		this.setState({ isVisible: true });
 		document.removeEventListener('click', this.onClick);
 		this.logEvent('BANNER_SHOW');
+
+		if (
+			template == 'top-banner' &&
+			(condition == 'wait-0' || condition == 'on-load')
+		) {
+			setTimeout(() => {
+				const banner = document.querySelector(`.kio-banner-${id}`);
+				banner.classList.add('kio-top-banner-prepend');
+				document.body.prepend(banner);
+				setTimeout(() => {
+					banner.classList.add('kio-top-banner-visible');
+				}, 300);
+			}, 1);
+		}
 	};
 
 	close = () => {
@@ -127,9 +139,13 @@ export default class Banner extends Component<IProps, IState> {
 			duration: [`${duration}`]
 		});
 
-		// this.logEvent('BANNER_PREVIEW_TIME', {
-		// 	duration: [`${duration}`]
-		// });
+		const banner = document.querySelector(
+			`.kio-banner-${id}.kio-top-banner-prepend`
+		);
+		if (banner) {
+			banner.remove();
+		}
+
 		if (!isPreview && showOnce != true)
 			return this.setState({ isVisible: false });
 
@@ -145,7 +161,7 @@ export default class Banner extends Component<IProps, IState> {
 
 	render() {
 		const { isVisible } = this.state;
-		const { data, template } = this.props;
+		const { id, data, template } = this.props;
 		const {
 			isRTL,
 			description,
@@ -159,10 +175,8 @@ export default class Banner extends Component<IProps, IState> {
 			isCloseable
 		} = data;
 		const entranceAnimation =
-			template == 'top-banner'
-				? 'kio-a-bounceInDown'
-				: 'kio-a-bounceInUp';
-		const classStr = `kio-banner kio-${template} kio-a-animated ${entranceAnimation} ${
+			template == 'top-banner' ? 'kio-a-bounceInDown' : 'kio-a-bounceInUp';
+		const classStr = `kio-banner-${id} kio-${template} kio-a-animated ${entranceAnimation} ${
 			isRTL === true ? 'is-rtl' : ''
 		}`;
 		return (

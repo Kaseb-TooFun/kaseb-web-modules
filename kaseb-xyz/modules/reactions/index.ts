@@ -57,7 +57,7 @@ export const initReactions = () => {
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498823',
 			value:
-				'{"type":"banner","data":{"name":"on-hover banner","template":"top-banner", "fontFamily":"kio-Vazir","bgColor":"#2e4057","isRTL":true,"description":"تقاضا می‌گردد هر گونه ایراد یا کاستی در قلم می‌بینید و یا پیشنهادی برای بهتر شدن آن دارید در قسمت ایشوهای گیت‌هاب و یا از طریق آدرس saber.rastikerdar بر روی Gmail.com در میان بگذارید.","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
+				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner", "fontFamily":"kio-Vazir","bgColor":"#2e4057","isRTL":true,"description":"تقاضا می‌گردد هر گونه ایراد یا کاستی در قلم می‌بینید و یا پیشنهادی برای بهتر شدن آن دارید در قسمت ایشوهای گیت‌هاب و یا از طریق آدرس saber.rastikerdar بر روی Gmail.com در میان بگذارید.","url":"https://hexboy.ir/","btnText":"press me!","condition":"on-hover","sourceSelector": ".avatar","isCloseable":true}}'
 		},
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498854',
@@ -77,7 +77,7 @@ export const initReactions = () => {
 		{
 			id: 'ed792a13-fd66-43b1-9359-0ec37d498857',
 			value:
-				'{"type":"banner","data":{"name":"on-hover banner","template":"bottom-banner", "fontFamily":"kio-Vazir","bgColor":"#ffbf00","isRTL":true,"description":"تقاضا می‌گردد هر گونه ایراد یا کاستی در قلم می‌بینید و یا پیشنهادی برای بهتر شدن آن دارید در قسمت ایشوهای گیت‌هاب و یا از طریق آدرس saber.rastikerdar بر روی Gmail.com در میان بگذارید.","url":"https://hexboy.ir/","btnText":"press me!","condition":"wait-0","sourceSelector": ".avatar","isCloseable":true,"urlPatterns":["http://localhost:1234$", "/1235"]}}'
+				'{"type":"banner","data":{"name":"on-hover banner","template":"top-banner", "fontFamily":"kio-Vazir","bgColor":"#ffbf00","isRTL":true,"description":"تقاضا می‌گردد هر گونه ایراد یا کاستی در قلم می‌بینید و یا پیشنهادی برای بهتر شدن آن دارید در قسمت ایشوهای گیت‌هاب و یا از طریق آدرس saber.rastikerdar بر روی Gmail.com در میان بگذارید.","url":"https://hexboy.ir/","btnText":"press me!","condition":"wait-0","sourceSelector": ".avatar","isCloseable":true,"urlPatterns":["http://localhost:1234$", "/1235"]}}'
 		}
 	];
 	// return applayReactions(data);
