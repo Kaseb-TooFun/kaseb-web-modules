@@ -97,6 +97,8 @@ export const setIdleTimeout = (
 		}
 	};
 
+	resetTimer();
+
 	const runOnce = () => {
 		callback();
 		deactivate();
